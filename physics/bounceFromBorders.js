@@ -23,7 +23,7 @@ function hasContactWithLeftWall(fly) {
     return fly.coordinates.x - fly.radius < 0;
 }
 function invertDirectionX(fly) {
-    fly.velocity.x = 0 - fly.velocity.x;
+    fly.velocity.x *= -1;
 }
 
 function hasContactWithCeiling(fly) {
@@ -33,5 +33,5 @@ function hasContactWithFloor(fly) {
     return fly.coordinates.y - fly.radius < 0;
 }
 function invertDirectionY(fly) {
-    fly.velocity.y = 0 - fly.velocity.y;
+    fly.velocity.y *= -1;
 }
