@@ -1,5 +1,5 @@
 {
-  "name": "fly-sim",
+  "name": "fly-battleground",
   "version": "1.0.0",
   "scripts": {
     "start": "live-server"
