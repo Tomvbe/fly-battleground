@@ -1,4 +1,5 @@
 import {randomInt} from "./util/integer.js";
+import {DirectionsEnum} from "./physics/directionsEnum.js";
 
 export function createFly(color, radius) {
     return {
@@ -11,7 +12,8 @@ export function createFly(color, radius) {
             y: randomInt(-4),
         },
         radius,
-        color
+        color,
+        momentum: DirectionsEnum.EAST
     }
 }
 

@@ -24,6 +24,7 @@ function hasContactWithLeftWall(fly) {
 }
 function invertDirectionX(fly) {
     fly.velocity.x *= -1;
+    fly.isAgainstWall = true;
 }
 
 function hasContactWithCeiling(fly) {
@@ -34,4 +35,5 @@ function hasContactWithFloor(fly) {
 }
 function invertDirectionY(fly) {
     fly.velocity.y *= -1;
+    fly.isAgainstWall = true;
 }
