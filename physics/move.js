@@ -1,12 +1,15 @@
-import {drawFly, removeFlyFromContext} from "../context.js";
+import {drawFly, clearCanvas} from "../context.js";
 import {bounceFromBorders} from "./bounceFromBorders.js";
 
-export function move(fly, context) {
-    requestAnimationFrame(() => move(fly, context));
-    removeFlyFromContext(context)
-    drawFly(fly, context);
-    bounceFromBorders(fly);
-    moveFlyToNextFrame(fly);
+export function move(flies, context) {
+    requestAnimationFrame(() => move(flies, context));
+    clearCanvas(context)
+
+    flies.forEach(fly => {
+        drawFly(fly, context);
+        bounceFromBorders(fly);
+        moveFlyToNextFrame(fly);
+    })
 }
 
 function moveFlyToNextFrame(fly) {

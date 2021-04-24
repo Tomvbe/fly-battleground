@@ -1,4 +1,4 @@
-export function createFly() {
+export function createFly(color) {
     return {
         coordinates: {
             x: Math.floor(Math.random() * innerWidth),
@@ -9,6 +9,7 @@ export function createFly() {
             y: Math.floor(Math.random() * 40),
         },
         radius: 30,
+        color
     }
 }
 
