@@ -5,8 +5,8 @@ export function createFly(color) {
             y: Math.floor(Math.random() * innerHeight),
         },
         velocity: {
-            x: Math.floor(Math.random() * -20),
-            y: Math.floor(Math.random() * 40),
+            x: Math.floor(Math.random() * -2),
+            y: Math.floor(Math.random() * 4),
         },
         radius: 30,
         color
