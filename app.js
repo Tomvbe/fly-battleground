@@ -3,7 +3,6 @@ import {move} from "./physics/move.js";
 
 const context2D = createContext();
 
-const fly = createFly("red");
-const fly2 = createFly("blue");
+const flies = [...new Array(50)].map(_ => createFly("green", 60))
 
-move([fly, fly2], context2D);
+move(flies, context2D);

@@ -1,20 +1,33 @@
-export function createFly(color) {
+import {randomInt} from "./util/integer.js";
+
+export function createFly(color, radius) {
     return {
         coordinates: {
-            x: Math.floor(Math.random() * innerWidth),
-            y: Math.floor(Math.random() * innerHeight),
+            x: calculateStartPosition(innerWidth, radius),
+            y: calculateStartPosition(innerHeight, radius),
         },
         velocity: {
-            x: Math.floor(Math.random() * -2),
-            y: Math.floor(Math.random() * 4),
+            x: randomInt(-2),
+            y: randomInt(-4),
         },
-        radius: 30,
+        radius,
         color
     }
 }
 
 export function createContext() {
     return createCanvas().getContext('2d');
+}
+
+function calculateStartPosition(limit, min) {
+    const random = randomInt(limit);
+    const max = limit - min;
+
+    if (random > min) {
+        return Math.min(random, max);
+    } else {
+        return Math.max(random, min)
+    }
 }
 
 function createCanvas() {
