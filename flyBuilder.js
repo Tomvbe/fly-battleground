@@ -1,6 +1,8 @@
 import {randomInt} from "./util/integer.js";
 import {DirectionsEnum} from "./physics/directionsEnum.js";
 
+let flySequence = 0;
+
 export const FlyBuilder = () => {
 
     let coordinatesFn = randomCoordinates;
@@ -36,6 +38,7 @@ export const FlyBuilder = () => {
 
     function build() {
         return {
+            id: ++flySequence,
             coordinates: coordinatesFn(radius),
             velocity: velocityFn(),
             radius: radius,
