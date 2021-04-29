@@ -1,11 +1,12 @@
 import {clearCanvas, drawFly} from "../context.js";
 import {bounceFromBorders} from "./bounceFromBorders.js";
 import {determineRandomNeighbour, DirectionsObjectMap} from "./directionsObjectMap.js";
+import {MatrixBuilder} from "../matrixBuilder.js";
 
 export function move(flies, context) {
     clearCanvas(context)
-    flies.forEach(fly => moveFly(fly, context))
-    requestAnimationFrame(() => move(flies, context));
+    Object.values(flies).forEach(fly => moveFly(fly, context))
+    requestAnimationFrame(() => move(MatrixBuilder(flies), flies, context));
 }
 
 function moveFly(fly, context) {

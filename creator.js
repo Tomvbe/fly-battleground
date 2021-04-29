@@ -5,7 +5,7 @@ import {FlyBuilder} from "./flyBuilder.js";
 
 export function createFlies() {
     const redFlies = buildFlies(
-        10000,
+        100,
         FlyBuilder()
             .velocityFn(() => ({x: 6, y: 6}))
             .color('red')
@@ -13,7 +13,7 @@ export function createFlies() {
     )
 
     const blueFlies = buildFlies(
-        5000,
+        50,
         FlyBuilder()
             .radius(6)
             .color('blue')
@@ -21,13 +21,15 @@ export function createFlies() {
     )
 
     function buildFlies(count, builder) {
-        return [...new Array(count)].map(_ => builder.build())
+        return [...new Array(count)]
+            .map(_ => builder.build())
+            .reduce((map, fly) => {
+                map[fly.id] = fly;
+                return map
+            }, {});
     }
 
-    return [
-        ...redFlies,
-        ...blueFlies
-    ]
+    return redFlies
 }
 
 export function createContext() {
@@ -45,4 +47,9 @@ export function initializeCanvas() {
     const canvas = document.getElementById('battle-ground');
     canvas.style.height = appConfig.canvas.height;
     canvas.style.width = appConfig.canvas.width;
+}
+
+export function createEmptyMatrix() {
+    const rows = appConfig.canvas.height;
+    return  [...new Array(rows)].map(_ => []);
 }

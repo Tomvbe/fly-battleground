@@ -44,7 +44,9 @@ export const FlyBuilder = () => {
             velocity: velocityFn(),
             radius: radius,
             color: color,
-            momentum: momentum
+            momentum: momentum,
+            attack: (fly) => console.log('approached by: ' + fly.id),
+            defend: (fly) => console.log('defending against: ' + fly.id)
         }
     }
 
