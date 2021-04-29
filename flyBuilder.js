@@ -1,5 +1,6 @@
 import {randomInt} from "./util/integer.js";
 import {DirectionsEnum} from "./physics/directionsEnum.js";
+import appConfig from "./app-config.js";
 
 let flySequence = 0;
 
@@ -70,8 +71,8 @@ function randomCoordinates(radius) {
     }
 
     return {
-        x: calculateStartPosition(innerWidth, radius),
-        y: calculateStartPosition(innerHeight, radius)
+        x: calculateStartPosition(appConfig.canvas.width, radius),
+        y: calculateStartPosition(appConfig.canvas.height, radius)
     }
 }
 

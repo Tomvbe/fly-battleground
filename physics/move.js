@@ -3,9 +3,9 @@ import {bounceFromBorders} from "./bounceFromBorders.js";
 import {determineRandomNeighbour, DirectionsObjectMap} from "./directionsObjectMap.js";
 
 export function move(flies, context) {
-    requestAnimationFrame(() => move(flies, context));
     clearCanvas(context)
     flies.forEach(fly => moveFly(fly, context))
+    requestAnimationFrame(() => move(flies, context));
 }
 
 function moveFly(fly, context) {

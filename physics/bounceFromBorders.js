@@ -1,3 +1,5 @@
+import appConfig from "../app-config.js";
+
 export function bounceFromBorders(fly) {
     if (hasContactWithRightWall(fly)) {
         invertDirectionX(fly);
@@ -17,7 +19,7 @@ export function bounceFromBorders(fly) {
 }
 
 function hasContactWithRightWall(fly) {
-    return fly.radius + fly.coordinates.x > innerWidth;
+    return fly.radius + fly.coordinates.x > appConfig.canvas.width;
 }
 function hasContactWithLeftWall(fly) {
     return fly.coordinates.x - fly.radius < 0;
@@ -28,7 +30,7 @@ function invertDirectionX(fly) {
 }
 
 function hasContactWithCeiling(fly) {
-    return fly.coordinates.y + fly.radius > innerHeight;
+    return fly.coordinates.y + fly.radius > appConfig.canvas.height;
 }
 function hasContactWithFloor(fly) {
     return fly.coordinates.y - fly.radius < 0;
