@@ -1,4 +1,34 @@
+// noinspection JSValidateTypes
+
 import appConfig from "./app-config.js";
+import {FlyBuilder} from "./flyBuilder.js";
+
+export function createFlies() {
+    const redFlies = buildFlies(
+        10000,
+        FlyBuilder()
+            .velocityFn(() => ({x: 6, y: 6}))
+            .color('red')
+            .coordinatesFn((r) => ({ x: appConfig.canvas.width - r, y: appConfig.canvas.height - r }))
+    )
+
+    const blueFlies = buildFlies(
+        5000,
+        FlyBuilder()
+            .radius(6)
+            .color('blue')
+            .coordinatesFn((r) => ({ x: r, y: r }))
+    )
+
+    function buildFlies(count, builder) {
+        return [...new Array(count)].map(_ => builder.build())
+    }
+
+    return [
+        ...redFlies,
+        ...blueFlies
+    ]
+}
 
 export function createContext() {
     function createCanvas() {
