@@ -53,12 +53,6 @@ export const FlyBuilder = () => {
             radius,
             color,
             momentum,
-            attack: (victim) => {
-                if (victim.team >= 0 && victim.team !== team) {
-                    victim.color = 'red'
-                }
-            },
-            defend: (fly) => fly
         }
     }
 

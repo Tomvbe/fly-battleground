@@ -1,4 +1,5 @@
 import appConfig from "./app-config.js";
+import {collide} from "./physics/collision.js";
 
 export const MatrixBuilder = (flyMap) => {
 
@@ -29,9 +30,7 @@ export const MatrixBuilder = (flyMap) => {
         const flyAlreadyOnGrid = grid[row][col];
 
         if (flyAlreadyOnGrid) {
-            const defendingFly = flyMap[flyAlreadyOnGrid];
-            attackingFly.attack(defendingFly)
-            defendingFly.defend(attackingFly);
+            collide(attackingFly, flyMap[flyAlreadyOnGrid]);
         } else {
             grid[row][col] = attackingFly.id;
         }

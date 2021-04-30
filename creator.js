@@ -11,16 +11,16 @@ export function createFlies() {
             .color('green')
             .team(1)
             // .radius(7)
-            .coordinatesFn((r) => ({ x: appConfig.canvas.width - r, y: appConfig.canvas.height - r }))
+            // .coordinatesFn((r) => ({ x: appConfig.canvas.width - r, y: appConfig.canvas.height - r }))
     )
 
     const blueFlies = buildFlies(
-        50,
+        500,
         FlyBuilder()
-            .radius(6)
+            // .radius(6)
             .team(2)
             .color('blue')
-            .coordinatesFn((r) => ({ x: r, y: r }))
+            // .coordinatesFn((r) => ({ x: r, y: r }))
     )
 
     function buildFlies(count, builder) {
