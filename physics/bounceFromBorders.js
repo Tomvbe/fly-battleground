@@ -2,19 +2,19 @@ import appConfig from "../app-config.js";
 
 export function bounceFromBorders(fly) {
     if (hasContactWithRightWall(fly)) {
-        invertDirectionX(fly);
+        invertVelocityX(fly);
     }
 
     if (hasContactWithLeftWall(fly)) {
-        invertDirectionX(fly);
+        invertVelocityX(fly);
     }
 
     if (hasContactWithCeiling(fly)) {
-        invertDirectionY(fly);
+        invertVelocityY(fly);
     }
 
     if (hasContactWithFloor(fly)) {
-        invertDirectionY(fly);
+        invertVelocityY(fly);
     }
 }
 
@@ -24,7 +24,7 @@ function hasContactWithRightWall(fly) {
 function hasContactWithLeftWall(fly) {
     return fly.coordinates.x - fly.radius < 0;
 }
-function invertDirectionX(fly) {
+function invertVelocityX(fly) {
     fly.velocity.x *= -1;
     fly.isAgainstWall = true;
 }
@@ -35,7 +35,7 @@ function hasContactWithCeiling(fly) {
 function hasContactWithFloor(fly) {
     return fly.coordinates.y - fly.radius < 0;
 }
-function invertDirectionY(fly) {
+function invertVelocityY(fly) {
     fly.velocity.y *= -1;
     fly.isAgainstWall = true;
 }
