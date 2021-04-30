@@ -1,21 +1,21 @@
 import appConfig from "../app-config.js";
 
 export function bounceFromBorders(fly) {
-    if (hasContactWithRightWall(fly)) {
+    if (hasContactWithVerticalBorder(fly)) {
         invertVelocityX(fly);
     }
 
-    if (hasContactWithLeftWall(fly)) {
-        invertVelocityX(fly);
-    }
-
-    if (hasContactWithCeiling(fly)) {
+    if (hasContactWithHorizontalBorder(fly)) {
         invertVelocityY(fly);
     }
+}
 
-    if (hasContactWithFloor(fly)) {
-        invertVelocityY(fly);
-    }
+function hasContactWithVerticalBorder(fly) {
+    return hasContactWithLeftWall(fly) || hasContactWithRightWall(fly);
+}
+
+function hasContactWithHorizontalBorder(fly) {
+    return hasContactWithCeiling(fly) || hasContactWithFloor(fly);
 }
 
 function hasContactWithRightWall(fly) {
