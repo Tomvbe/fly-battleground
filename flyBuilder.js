@@ -2,6 +2,7 @@ import {randomInt} from "./util/integer.js";
 import {DirectionsEnum} from "./physics/directionsEnum.js";
 import appConfig from "./app-config.js";
 
+export const NO_TEAM = -1;
 let flySequence = 0;
 
 export const FlyBuilder = () => {
@@ -11,6 +12,7 @@ export const FlyBuilder = () => {
     let radius = 3;
     let color = "rgb(7,66,66)";
     let momentum = DirectionsEnum.EAST;
+    let team = NO_TEAM;
 
     function setCoordinatesFn(input) {
         coordinatesFn = input;
@@ -37,15 +39,25 @@ export const FlyBuilder = () => {
         return this;
     }
 
+    function setTeam(input) {
+        team = input;
+        return this;
+    }
+
     function build() {
         return {
             id: ++flySequence,
+            team,
             coordinates: coordinatesFn(radius),
             velocity: velocityFn(),
             radius,
             color,
             momentum,
-            attack: (fly) => fly.color = 'red',
+            attack: (victim) => {
+                if (victim.team >= 0 && victim.team !== team) {
+                    victim.color = 'red'
+                }
+            },
             defend: (fly) => fly
         }
     }
@@ -56,6 +68,7 @@ export const FlyBuilder = () => {
         radius: setRadius,
         color: setColor,
         momentum: setMomentum,
+        team: setTeam,
         build: build
     }
 };

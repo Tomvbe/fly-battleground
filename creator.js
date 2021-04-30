@@ -9,6 +9,7 @@ export function createFlies() {
         FlyBuilder()
             .velocityFn(() => ({x: 3, y: 3}))
             .color('green')
+            .team(1)
             // .radius(7)
             .coordinatesFn((r) => ({ x: appConfig.canvas.width - r, y: appConfig.canvas.height - r }))
     )
@@ -17,6 +18,7 @@ export function createFlies() {
         50,
         FlyBuilder()
             .radius(6)
+            .team(2)
             .color('blue')
             .coordinatesFn((r) => ({ x: r, y: r }))
     )
