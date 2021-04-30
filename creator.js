@@ -5,15 +5,16 @@ import {FlyBuilder} from "./flyBuilder.js";
 
 export function createFlies() {
     const redFlies = buildFlies(
-        10000,
+        500,
         FlyBuilder()
-            .velocityFn(() => ({x: 6, y: 6}))
-            .color('red')
+            .velocityFn(() => ({x: 3, y: 3}))
+            .color('green')
+            // .radius(7)
             .coordinatesFn((r) => ({ x: appConfig.canvas.width - r, y: appConfig.canvas.height - r }))
     )
 
     const blueFlies = buildFlies(
-        5000,
+        50,
         FlyBuilder()
             .radius(6)
             .color('blue')
@@ -21,13 +22,18 @@ export function createFlies() {
     )
 
     function buildFlies(count, builder) {
-        return [...new Array(count)].map(_ => builder.build())
+        return [...new Array(count)]
+            .map(_ => builder.build())
+            .reduce((map, fly) => {
+                map[fly.id] = fly;
+                return map
+            }, {});
     }
 
-    return [
+    return {
         ...redFlies,
         ...blueFlies
-    ]
+    }
 }
 
 export function createContext() {

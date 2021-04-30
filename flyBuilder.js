@@ -42,9 +42,11 @@ export const FlyBuilder = () => {
             id: ++flySequence,
             coordinates: coordinatesFn(radius),
             velocity: velocityFn(),
-            radius: radius,
-            color: color,
-            momentum: momentum
+            radius,
+            color,
+            momentum,
+            attack: (fly) => fly.color = 'red',
+            defend: (fly) => fly
         }
     }
 
@@ -78,8 +80,8 @@ function randomCoordinates(radius) {
 
 function randomVelocity() {
     return {
-        x: randomInt(-5),
-        y: randomInt(-5),
+        x: randomInt(5) + 1,
+        y: randomInt(5) + 1,
     }
 }
 

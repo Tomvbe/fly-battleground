@@ -1,5 +1,6 @@
 import {DirectionsEnum} from "./directionsEnum.js";
 import {randomInt} from "../util/integer.js";
+import appConfig from "../app-config.js";
 
 export const DirectionsObjectMap = new Map([
     [
@@ -78,19 +79,19 @@ export function determineRandomNeighbour(directionObject) {
 }
 
 function moveNorth(fly) {
-    fly.coordinates.y = fly.coordinates.y - fly.velocity.y;
+    fly.coordinates.y = Math.max(fly.coordinates.y - fly.velocity.y, 0);
 }
 
 function moveEast(fly) {
-    fly.coordinates.x = fly.coordinates.x + fly.velocity.x;
+    fly.coordinates.x = Math.min(fly.coordinates.x + fly.velocity.x, appConfig.canvas.width);
 }
 
 function moveSouth(fly) {
-    fly.coordinates.y = fly.coordinates.y + fly.velocity.y;
+    fly.coordinates.y = Math.min(fly.coordinates.y + fly.velocity.y, appConfig.canvas.height);
 }
 
 function moveWest(fly) {
-    fly.coordinates.x = fly.coordinates.x - fly.velocity.x;
+    fly.coordinates.x = Math.max(fly.coordinates.x - fly.velocity.x, 0);
 }
 
 function moveNorthEast(fly) {

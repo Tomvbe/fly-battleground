@@ -1,34 +1,22 @@
 import {clearCanvas, drawFly} from "../context.js";
-import {bounceFromBorders} from "./bounceFromBorders.js";
 import {determineRandomNeighbour, DirectionsObjectMap} from "./directionsObjectMap.js";
+import {MatrixBuilder} from "../matrixBuilder.js";
 
-export function move(flies, context) {
+export function move(matrix, flies, context) {
     clearCanvas(context)
-    flies.forEach(fly => moveFly(fly, context))
-    requestAnimationFrame(() => move(flies, context));
+    Object.values(flies).forEach(fly => moveFly(fly, context))
+    requestAnimationFrame(() => move(MatrixBuilder(flies), flies, context));
 }
 
 function moveFly(fly, context) {
     drawFly(fly, context);
-
-    //todo  refactor to combine bounce and movefly
-    bounceFromBorders(fly);
     moveFlyToNextFrame(fly);
 }
 
 function moveFlyToNextFrame(fly) {
-
-    const currentDirectionObject = DirectionsObjectMap.get(fly.momentum);
-
-    if (fly.isAgainstWall) {
-        // velocity already reversed (e.g. 180deg rotation)
-        fly.isAgainstWall = false;
-        currentDirectionObject.action(fly);
-    } else {
-        const newDirectionObject = findNewDirection(determineRotation(), currentDirectionObject);
-        fly.momentum = newDirectionObject.direction;
-        newDirectionObject.action(fly);
-    }
+    const newDirectionObject = findNewDirection(determineRotation(), DirectionsObjectMap.get(fly.momentum));
+    fly.momentum = newDirectionObject.direction;
+    newDirectionObject.action(fly);
 }
 
 function determineRotation() {
