@@ -5,22 +5,22 @@ import {FlyBuilder} from "./flyBuilder.js";
 
 export function createFlies() {
     const redFlies = buildFlies(
-        500,
+        1000,
         FlyBuilder()
             .velocityFn(() => ({x: 3, y: 3}))
             .color('green')
             .team(1)
-            // .radius(7)
+            .radius(6)
             // .coordinatesFn((r) => ({ x: appConfig.canvas.width - r, y: appConfig.canvas.height - r }))
     )
 
     const blueFlies = buildFlies(
-        500,
+        1000,
         FlyBuilder()
-            // .radius(6)
+            .radius(6)
             .team(2)
             .color('blue')
-            // .coordinatesFn((r) => ({ x: r, y: r }))
+            // .coordinatesFn((r) => ({ x: 2, y: 2 }))
     )
 
     function buildFlies(count, builder) {

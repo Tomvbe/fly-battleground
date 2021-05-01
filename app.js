@@ -5,9 +5,11 @@ import {MatrixBuilder} from "./matrixBuilder.js";
 function runApplication() {
     initializeCanvas();
 
+    const flies = createFlies();
+
     move(
-        MatrixBuilder(createFlies()),
-        createFlies(),
+        MatrixBuilder(flies),
+        flies,
         createContext()
     );
 }

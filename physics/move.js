@@ -4,7 +4,11 @@ import {MatrixBuilder} from "../matrixBuilder.js";
 
 export function move(matrix, flies, context) {
     clearCanvas(context)
-    Object.values(flies).forEach(fly => moveFly(fly, context))
+    Object.values(flies).forEach(fly => {
+        drawFly(fly, context);
+        moveFlyToNextFrame(fly);
+        matrix.push(fly)
+    })
     requestAnimationFrame(() => move(MatrixBuilder(flies), flies, context));
 }
 
